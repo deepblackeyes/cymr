@@ -1,5 +1,7 @@
 package com.jojoldu.book.springboot.web;
 
+import com.jojoldu.book.springboot.config.auth.LoginUser;
+import com.jojoldu.book.springboot.config.auth.dto.SessionUser;
 import com.jojoldu.book.springboot.service.PostsService;
 import com.jojoldu.book.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +17,11 @@ public class IndexController {
     private final PostsService postsService;
     //메인 페이지
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
+        if(user != null)   {
+            model.addAttribute("LoginUserName", user.getName());
+        }
         return "index";
     }
 
@@ -32,5 +37,6 @@ public class IndexController {
         model.addAttribute("post",dto);
         return "posts-update";
     }
+
 
 }

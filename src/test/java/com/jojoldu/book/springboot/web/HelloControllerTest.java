@@ -1,10 +1,14 @@
 package com.jojoldu.book.springboot.web;
 
+import com.jojoldu.book.springboot.config.auth.SecurityConfig;
 import com.jojoldu.book.springboot.web.HelloController;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +21,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(controllers = HelloController.class)
+//WebMvcTest는 커스텀유저서비스를 스캔하지 않음=> 리포지토리, 서비스, 컴포넌트는 스캔 대상 x
+//스캔 대상에서 시큐리티콘피그를 제거한다.
+@WebMvcTest(controllers = HelloController.class,
+excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,
+classes = SecurityConfig.class)})
 public class HelloControllerTest {
     @Autowired
     private MockMvc mvc;
 
+    @WithMockUser(roles = "USER")
     @Test
     public void hello가_리턴된다() throws Exception {
         String hello = "hello";
@@ -32,6 +41,7 @@ public class HelloControllerTest {
 
     }
 
+    @WithMockUser(roles = "USER")
     @Test
     public void hellodto가_리턴된다() throws Exception {
         String name = "hello";
