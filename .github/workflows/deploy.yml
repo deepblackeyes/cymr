@@ -18,7 +18,7 @@ on:
   release:
     types: [push] # (1) push시 자동으로 실행됩니다.
   push:
-    branches: [main] # (2) main 브랜치에서 동작합니다.
+    branches: [master] # (2) master 브랜치에서 동작합니다.
   workflow_dispatch: # (3) 수동으로도 실행이 가능힙니다.
 
 
@@ -58,8 +58,15 @@ jobs:
       run: echo "CurrentTime=${{steps.current-time.outputs.formattedTime}}" # (10)
       shell: bash
       
-    - name: Show Current Time
-      run: echo "CurrentTime=${{steps.current-time.outputs.formattedTime}}"    # (10)
+    - name: Generate deployment package # (final)
+      run: |
+        mkdir -p before-deploy
+        cp scripts/*.sh before-deploy/
+        cp appspec.yml before-deploy/
+        cp build/libs/*.jar before-deploy/
+        cd before-deploy && zip -r before-deploy *
+        cd ../ && mkdir -p deploy
+        mv before-deploy/before-deploy.zip deploy/$PROJECT_NAME.zip
       shell: bash
     # 아래부분이 추가되는 내용입니다.
     - name: Make zip file
