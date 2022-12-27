@@ -1,6 +1,6 @@
 var main = {
     init : function () {
-        var _this = this;
+        let _this = this;
         $('#btn-save').on('click',function () {
             _this.save();
         }); //코드 선언 이유=> js 파일 추가시 중복된 함수 이름을 덮어씌게 됨. 유효범위를 만들어 사용
@@ -12,7 +12,7 @@ var main = {
                });
     },
    save : function () {
-          var data = {
+          let data = {
               title: $('#title').val(),
               author: $('#author').val(),
               content: $('#content').val()
@@ -32,7 +32,7 @@ var main = {
           });
     },
      update : function () {
-            var data = {
+            let data = {
                 title: $('#title').val(),
                 content: $('#content').val()
             };
