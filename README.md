@@ -52,7 +52,7 @@ Spring Boot와 JPA,스프링 시큐티리를 활용한 소셜 로그인과 CRUD 
 
 ✔ codedeploy를 사용한 배포 
 
-![배포 성공](https://user-images.githubusercontent.com/103393439/209836138-d8bf815f-1403-4f47-882a-c8d3bff49576.jpg)
+![codeplay check](https://user-images.githubusercontent.com/103393439/209846951-ac9b80f3-1a24-4792-80d4-437f3ed1bcc1.jpg)
 
 ✔Nginx를 이용한 무중단 배포
 ![nginx 접속](https://user-images.githubusercontent.com/103393439/209839963-c42c8ad1-d0dd-4392-a9fb-42aceeb68c88.jpg)
