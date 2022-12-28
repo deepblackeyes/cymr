@@ -1,5 +1,8 @@
 ## 📃프로젝트 소개
 Spring Boot와 JPA,스프링 시큐티리를 활용한 소셜 로그인과 CRUD 기능을 제작하였고 RDS와 연결하였습니다.  AWS의 가상 서버인 EC2를 사용하여 프로젝트를 배포하였으며 그 후 Nginx 서버를 등록하여 무중단 배포하였습니다.
+
+프로젝트 타임라인과 실제 겪었던 Error는 링크를 통하여 확인 가능합니다
+https://mulberry-echium-a73.notion.site/Spring-Project-4d1f0d7f1c4249338ba6ca19d1ecd91b
 ***
 
 ### ⏲개발기간
